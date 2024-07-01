@@ -9,8 +9,8 @@ export default function Header() {
         <span className='text-customGrey'>Estate</span>
         <span className='text-customPurple'>Galaxy</span>
       </h1>
-      <form className='bg-customBgSearch p-2 rounded-lg flex item-center'>
-        <input type='text' placeholder='Search...' className='bg-transparent focus:outline-none w-24 sm:w-64'/>
+      <form className='bg-customBgSearch p-2 rounded-lg flex items-center'>
+        <input type='text' placeholder='Search...' className='bg-transparent focus:outline-none w-24 sm:w-64 text-white placeholder-customSearchIcon'/>
         <FaSearch className='text-customSearchIcon' />
       </form>
       <ul className='flex gap-4'>
