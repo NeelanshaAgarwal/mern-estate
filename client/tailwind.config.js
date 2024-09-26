@@ -12,6 +12,8 @@ export default {
         customDarkPurple: '#231F20',
         customBgSearch: '#554D5C',
         customSearchIcon: '#C1BDBE',
+        customGrey2: '#6F616E',
+        customGrey3: '#958993',
       }
     },
   },
