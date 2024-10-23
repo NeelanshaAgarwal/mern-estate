@@ -1,9 +1,33 @@
 import{useSelector} from 'react-redux';
-import { useRef, useState, useEffect } from 'react';
-import {getDownloadURL, getStorage, ref, uploadBytesResumable} from 'firebase/storage';
+import 
+{ useRef, 
+  useState, 
+  useEffect } 
+  from 'react';
+
+import 
+{ getDownloadURL, 
+  getStorage, 
+  ref, 
+  uploadBytesResumable} 
+  from 'firebase/storage';
+
 import { app } from '../firebase';
-import { updateUserStart,updateUserSuccess, updateUserFailure, deleteUserFailure, deleteUserStart, deleteUserSuccess, signOutUserStart } from '../redux/user/userSlice';
+
+import 
+{ updateUserStart,
+  updateUserSuccess, 
+  updateUserFailure, 
+  deleteUserFailure, 
+  deleteUserStart, 
+  deleteUserSuccess, 
+  signOutUserStart } 
+  from '../redux/user/userSlice';
+
 import { useDispatch } from 'react-redux';
+
+import { Link } from 'react-router-dom';
+
 export default function Profile() {
   const fileRef = useRef(null)
   const {currentUser, loading, error} = useSelector((state)=>state.user)
@@ -102,12 +126,29 @@ export default function Profile() {
   return (
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>
-      <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
-        <input onChange={(e)=>setfile(e.target.files[0])} type='file' ref={fileRef} hidden accept='image/*'/>
-        <img onClick={()=>fileRef.current.click()} src={formData?.avatar ||currentUser.avatar} alt="profile" className='rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2'/>
+      <form 
+      onSubmit={handleSubmit} 
+      className='flex flex-col gap-4'
+      >
+        <input 
+        onChange={(e)=> setfile(e.target.files[0])} 
+        type='file' 
+        ref={fileRef} 
+        hidden 
+        accept='image/*'
+        />
+        <img 
+        onClick={()=>fileRef.current.click()} 
+        src={formData?.avatar ||currentUser.avatar}
+        alt="profile" 
+        className='rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2'
+        />
         <p className='text-sm self-center'>
           {fileUploadError ? (
-            <span className='text-red-700'>Error Image Upload (image must be less thsn 2 mb)</span>
+            <span 
+            className='text-red-700'
+            >Error Image Upload (image must be less thsn 2 mb)
+            </span>
           ) : filePerc > 0 && filePerc < 100 ? (
             <span className='text-slate-700'>{`Uploading ${filePerc}%`}</span>
           ) : filePerc === 100 ? (
@@ -116,14 +157,49 @@ export default function Profile() {
               ''
           )}
         </p>
-        <input type='text' placeholder='username' defaultValue={currentUser.username} id='username' className='border p-3 rounded-lg' onChange={handleChange}/>
-        <input type='email' placeholder='email' id='email' defaultValue={currentUser.email} className='border p-3 rounded-lg' onChange={handleChange}/>
-        <input type='password' placeholder='password' id='password' className='border p-3 rounded-lg' onChange={handleChange}/>
-        <button disabled={loading} className='bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-9 disabled:opacity-80'>{loading? '...loading':'Update'}</button>
+        <input 
+        type='text' 
+        placeholder='username' 
+        defaultValue={currentUser.username} 
+        id='username' 
+        className='border p-3 rounded-lg' 
+        onChange={handleChange}
+        />
+        <input 
+        type='email' 
+        placeholder='email' id='email' 
+        defaultValue={currentUser.email} 
+        className='border p-3 rounded-lg' 
+        onChange={handleChange
+
+        }/>
+        <input 
+        type='password' 
+        placeholder='password' 
+        id='password' 
+        className='border p-3 rounded-lg' 
+        onChange={handleChange}
+        />
+        <button 
+        disabled={loading} 
+        className='bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-9 disabled:opacity-80'
+        >
+          {loading? '...loading':'Update'}
+        </button>
+        <Link className='bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:opacity-95' to = {"/create-listing"}>Create Listing
+        </Link>
       </form>
       <div className='flex justify-between mt-5'>
-        <span onClick={handleDeleteUser} className='text-red-700 cursor-pointer'>Delete account</span>
-        <span onClick={handleSignOut} className='text-red-700 cursor-pointer'>Sign out</span>
+        <span 
+        onClick={handleDeleteUser} 
+        className='text-red-700 cursor-pointer'
+        >Delete account
+        </span>
+        <span 
+        onClick={handleSignOut} 
+        className='text-red-700 cursor-pointer'
+        >Sign out
+        </span>
       </div>
       <p className='text-red-700 mt-5'>{error ? error : ''}</p>
       <p className='text-green-700 mt-5'>{updateSuccess?'User is updated successfully!':''}</p>
