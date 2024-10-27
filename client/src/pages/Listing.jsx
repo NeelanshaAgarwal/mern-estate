@@ -94,7 +94,7 @@ export default function Listing() {
                 : listing.regularPrice.toLocaleString('en-US')}
               {listing.type === 'rent' && ' / month'}
             </p>
-            <p className='flex items-center mt-6 gap-2 text-slate-600  text-sm font-semibold'>
+            <p className='flex items-center mt-6 gap-2 text-customPurple  text-sm font-semibold'>
               <FaMapMarkerAlt className='text-customPurple' />
               {listing.address}
             </p>
