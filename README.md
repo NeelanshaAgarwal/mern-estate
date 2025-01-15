@@ -130,10 +130,6 @@ The frontend will now be running on `http://localhost:5173`.
 
 Feel free to fork this repository and submit pull requests! If you encounter any issues or have suggestions for improvements, please open an issue.
 
-## License
-
-This project is licensed under the MIT License.
-
 ## Troubleshooting
 
 - If you face database connection issues, make sure your MongoDB Atlas IP whitelist includes your server's IP.
